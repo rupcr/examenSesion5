@@ -1,12 +1,12 @@
 import { Logger } from "@nestjs/common";
-import { EntityRepository, Repository } from "typeorm";
-import {Catalogo} from "./articulo";
+import { EntityRepository, MongoRepository, Repository } from "typeorm";
+import {Catalogo} from "./articulo.entity";
 
 
 
 @EntityRepository(Catalogo)
 
-export class CatalogoRepository extends Repository<Catalogo>{
+export class CatalogoRepository extends MongoRepository<Catalogo>{
 
 private logger = new Logger('');
 

@@ -15,14 +15,12 @@ export class AppController {
   }
 
   @Get()
-  @ApiBody({required:true, type: ArticuloDTO})
   @ApiOperation({summary: 'Devuelve toda la consulta'})
   getTodo() {
     return this.appService.getTodo();
   }
 
   @Get("/:id")
-  @ApiBody({required:true, type: ArticuloDTO})
   @ApiOperation({summary: 'Devuelve un articulo'})
   @ApiParam({name: 'id'})
   getUnArticulo(@Param('id') id:string) {
@@ -50,7 +48,6 @@ export class AppController {
   }
 
   @Delete("/:id")
-  @ApiBody({required:true, type: ArticuloDTO})
   @ApiOperation({summary: 'Eliminar un articulo'})
   @ApiParam({name: 'id'})
   eliminarUnArticulo(@Param('id') id:string) {
