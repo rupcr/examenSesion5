@@ -1,24 +1,38 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ArticuloDTO } from './catalogo.dto';
+import { CatalogoRepository } from './repo';
 
 @Injectable()
 export class AppService {
  
-  getHello(): string {
-    return 'Hello World!';
-  }
-  getTodo() {
-    return []; 
-  }
-  getUnArticulo(id:string){
-    return {id:id};
-  }
-  agregarUnArticulo(data: object) {
-    return 'Agregado';
-  }
-  editarUnArticulo(id:string,data:object) {
-    return 'editado';
-  }
-  eliminarUnArticulo(id:string){
-    return 'Eliminado';
-  }
+  
+  constructor(
+    @InjectRepository(CatalogoRepository)
+    private repository: CatalogoRepository
+) { }
+getHello(): string {
+  return 'Hello World!';
+}
+async getTodo() {
+    console.log('ask get')
+    let response = this.repository.find({});
+    return await response;
+}
+getUnArticulo(id: string) {
+    return { id: id };
+}
+
+async agregarUnArticulo(data: ArticuloDTO) {
+    const news = await this.repository.createArticulo(data);
+    console.log(news);
+    return 'agregado';
+
+}
+editarUnArticulo(id: string, data: object) {
+    return 'editado'
+}
+eliminarUnArticulo(id: string) {
+    return 'eliminado';
+}
 }

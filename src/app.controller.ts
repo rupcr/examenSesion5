@@ -33,8 +33,10 @@ export class AppController {
   @ApiBody({required:true, type: ArticuloDTO})
   @ApiOperation({summary: 'Agregar un articulo'})
   agregar(@Body() req:any){
-  return this.appService.agregarUnArticulo({});
+  return this.appService.agregarUnArticulo(req);
   }
+
+
 
   @Patch('/:id')
   @UsePipes(ValidationPipe)
