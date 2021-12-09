@@ -19,9 +19,12 @@ async getTodo() {
     let response = this.repository.find({});
     return await response;
 }
-getUnArticulo(id: string) {
-    return { id: id };
-}
+
+async getUnArticulo(id: string){
+  let response = await this.repository.find(
+   {where: {id:id}});
+    return response;
+  }
 
 async agregarUnArticulo(data: ArticuloDTO) {
     const news = await this.repository.createArticulo(data);
